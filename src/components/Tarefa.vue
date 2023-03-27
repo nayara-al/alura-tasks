@@ -1,32 +1,33 @@
 <template>
-    <section>
-      <strong class="display">
-        {{ tempoDecorrido }}
-      </strong>
-    </section>
+    <Box>
+      <div class="columns">
+        <div class="column is-7">
+          {{ tarefa.descricao || "Tarefa sem descrição" }}
+        </div>
+        <div class="column">
+          <Cronometro :tempoEmSegundos="tarefa.duracaoEmSegundos" />
+        </div>
+      </div>
+    </Box>
   </template>
   <script lang="ts">
-  import { defineComponent } from "vue";
+  import { defineComponent, PropType } from "vue";
+  import ITarefa from "@/interfaces/ITarefa";
+  import Cronometro from "./Cronometro.vue";
+  import Box from "./Box.vue";
   export default defineComponent({
-    name: "Cronometro-forms",
-    props: {
-      tempoEmSegundos: {
-        type: Number,
-        default: 0,
-      },
+    name: "NewTask",
+    components: {
+      Cronometro,
+      Box,
     },
-    computed: {
-      tempoDecorrido(): string {
-        return new Date(this.tempoEmSegundos * 1000)
-          .toISOString()
-          .substring(19, 11);
+    props: {
+      tarefa: {
+        type: Object as PropType<ITarefa>,
+        required: true,
       },
     },
   });
   </script>
-  <style scoped>
-  .display {
-    color: var(--texto-primario);
-  }
-  </style>
+  <style scoped></style>
   
