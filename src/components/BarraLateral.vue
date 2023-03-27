@@ -28,8 +28,8 @@
     },
     methods: {
       alterarTema(): void {
-        this.$emit("aoTemaAlterado", this.modoEscuroAtivo);
         this.modoEscuroAtivo = !this.modoEscuroAtivo;
+        this.$emit("aoTemaAlterado", this.modoEscuroAtivo);
       },
     },
   });
@@ -52,3 +52,4 @@
     }
   }
   </style>
+  
